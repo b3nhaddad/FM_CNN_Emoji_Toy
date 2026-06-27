@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e6325da0-8a2d-40e4-b99d-2de0fa499191" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/BensNN.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CNN.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/explanation.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sample.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="9.352971368169447E-8" />
+      <entry key="MS500" value="0.040232843997306394" />
+      <entry key="S2" value="0.6208085946776745" />
+      <entry key="S5" value="1.2221655799891122" />
+      <entry key="S10" value="1.5783738453939635" />
+      <entry key="S30" value="6.654478368926887" />
+      <entry key="S60" value="24.098469967876863" />
+      <entry key="M2" value="52.00621056568409" />
+      <entry key="M5" value="85.22670080217671" />
+      <entry key="M10" value="101.00048527034278" />
+      <entry key="M15" value="106.94692821871166" />
+      <entry key="M30" value="113.44317335266905" />
+      <entry key="H1" value="117.97299308211292" />
+      <entry key="H2" value="122.6002271281994" />
+      <entry key="H4" value="129.9391830748801" />
+      <entry key="D1" value="219.45704825670438" />
+      <entry key="W1" value="287.47009140056633" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.000000004048403" />
+      <entry key="S2" value="1.007978958722718" />
+      <entry key="S5" value="1.1503431310432004" />
+      <entry key="S10" value="1.455050482748751" />
+      <entry key="S30" value="2.1454948961198963" />
+      <entry key="S60" value="2.4999914717974026" />
+      <entry key="M2" value="2.728076442786976" />
+      <entry key="M5" value="2.8853979563940317" />
+      <entry key="M10" value="2.9416746035766925" />
+      <entry key="M15" value="2.9608847140238757" />
+      <entry key="M30" value="2.9803254826761614" />
+      <entry key="H1" value="2.9901346588249393" />
+      <entry key="H2" value="2.9984607817412297" />
+      <entry key="H4" value="3.17172668346533" />
+      <entry key="D1" value="7.660208204429474" />
+      <entry key="W1" value="11.192274307180266" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="2.3257799160161268E-4" />
+      <entry key="MS500" value="0.20139297805510203" />
+      <entry key="S2" value="1.1728714684855925" />
+      <entry key="S5" value="2.1208198460937666" />
+      <entry key="S10" value="2.8747746248487918" />
+      <entry key="S30" value="8.723849038106644" />
+      <entry key="S60" value="26.552944224635496" />
+      <entry key="M2" value="54.708352356151615" />
+      <entry key="M5" value="88.10059301735556" />
+      <entry key="M10" value="103.93616909614092" />
+      <entry key="M15" value="109.90376089717776" />
+      <entry key="M30" value="116.42142236468207" />
+      <entry key="H1" value="120.96197701000835" />
+      <entry key="H2" value="125.59795273916413" />
+      <entry key="H4" value="133.1103417501569" />
+      <entry key="D1" value="227.11669649002494" />
+      <entry key="W1" value="298.66223522486575" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3Fh2I5ElzIDVBxl5K4yCnnCgdGK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.dataset.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sample.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/oliverhaddad/PycharmProjects/BensNN&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-245168a56dbd-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.25134.203" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e6325da0-8a2d-40e4-b99d-2de0fa499191" name="Changes" comment="" />
+      <created>1782512897705</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782512897705</updated>
+      <workItem from="1782512898704" duration="197000" />
+      <workItem from="1782513105357" duration="28676000" />
+      <workItem from="1782597840211" duration="110000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dataset.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dataset.py</url>
+          <line>55</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BensNN$dataset.coverage" NAME="dataset Coverage Results" MODIFIED="1782518503680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BensNN$train.coverage" NAME="train Coverage Results" MODIFIED="1782536408532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BensNN$sample.coverage" NAME="sample Coverage Results" MODIFIED="1782521622128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
