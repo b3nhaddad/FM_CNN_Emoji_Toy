@@ -15,7 +15,7 @@ def encode_text(text, tokenizer, clip, device):
         return clip(**inputs).pooler_output   # (1, 512)
 
 @torch.no_grad()
-def sample(model, emb, device, H=64, W=64, steps=100):
+def sample(model, emb, device, H=64, W=64, steps=20):
     x  = torch.randn(1, 1, H, W, device=device)
     dt = 1.0 / steps
     for i in range(steps):

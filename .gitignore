@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+./generated_images
+./emoji_embeddings.pt
+feedback.json
