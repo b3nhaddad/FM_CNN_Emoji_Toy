@@ -222,3 +222,4 @@ generated_images
 feedback.json
 FM_LOSS_FB.py
 emoji_embeddings_v2.pt
+emoji_fm_best.pt
