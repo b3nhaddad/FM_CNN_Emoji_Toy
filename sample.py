@@ -15,12 +15,31 @@ def encode_text(text, tokenizer, clip, device):
         return clip(**inputs).pooler_output   # (1, 512)
 
 @torch.no_grad()
-def sample(model, emb, device, H=64, W=64, steps=20):
-    x  = torch.randn(1, 1, H, W, device=device)
-    dt = 1.0 / steps
+def sample(model, emb, device, H=64, W=64, steps=20, guidance_scale=7.5):
+    x        = torch.randn(1, 3, H, W, device=device)
+    null_emb = torch.zeros_like(emb)
+    dt       = 1.0 / steps
+
     for i in range(steps):
-        t = torch.full((1,), i * dt, device=device)
-        x = x + model(x, t, emb) * dt
+        t      = torch.full((1,), i * dt, device=device)
+        t_next = torch.clamp(torch.full((1,), (i + 1) * dt, device=device), max=1.0)
+
+        # CFG velocity at current step
+        v_cond   = model(x, t, emb)
+        v_uncond = model(x, t, null_emb)
+        v        = v_uncond + guidance_scale * (v_cond - v_uncond)
+
+        # Heun predictor step
+        x_pred = x + dt * v
+
+        # CFG velocity at predicted next step
+        v_cond_next   = model(x_pred, t_next, emb)
+        v_uncond_next = model(x_pred, t_next, null_emb)
+        v_next        = v_uncond_next + guidance_scale * (v_cond_next - v_uncond_next)
+
+        # Heun corrector
+        x = x + dt * (v + v_next) / 2
+
     return x
 
 
@@ -38,11 +57,11 @@ if __name__ == '__main__':
     emb    = encode_text(prompt, tokenizer, clip, device)
     img    = sample(model, emb, device)
 
-    # tensor (1,1,64,64) -> uint8 grayscale PIL image
+    # tensor (1,3,64,64) -> uint8 RGB PIL image
     import os
     from PIL import Image as PILImage
-    img_np  = (img.squeeze().cpu().numpy() * 255).clip(0, 255).astype('uint8')
-    pil_img = PILImage.fromarray(img_np, mode='L')
+    img_np  = (img.squeeze().permute(1, 2, 0).cpu().numpy() * 255).clip(0, 255).astype('uint8')
+    pil_img = PILImage.fromarray(img_np, mode='RGB')
     out     = os.path.join('/Users/oliverhaddad/PycharmProjects/BensNN', 'output.png')
     pil_img.save(out)
     print(f"Saved → {out}")

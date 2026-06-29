@@ -217,6 +217,8 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-./generated_images
+generated_images
 ./emoji_embeddings.pt
 feedback.json
+FM_LOSS_FB.py
+emoji_embeddings_v2.pt

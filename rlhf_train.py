@@ -1,9 +1,9 @@
 """
 Two-phase RLHF:
-  Phase 1 — train the reward model on your feedback.json labels,
-             using the exact images you rated (saved in feedback_images/)
-  Phase 2 — fine-tune the flow model by maximising the reward via
-             differentiable ODE rollout (short, 20-step version)
+  Phase 1 — train the reward model on feedback.json labels,
+             conditioned on both image and text embedding.
+  Phase 2 — fine-tune the flow model by maximising reward via
+             differentiable ODE rollout.
 """
 import json
 import numpy as np
@@ -11,15 +11,18 @@ import torch
 import torch.nn as nn
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader
+from tqdm import tqdm
 
 from CNN import CNN_FM
 from reward_model import RewardModel
 
-FEEDBACK_FILE = 'feedback.json'
-DEVICE        = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-RLHF_STEPS    = 20
-REWARD_EPOCHS = 20
-RLHF_EPOCHS   = 50
+FEEDBACK_FILE  = 'feedback.json'
+FLOW_CKPT      = 'emoji_fm_2.pt'
+DEVICE         = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+RLHF_STEPS     = 20
+REWARD_EPOCHS  = 20
+RLHF_EPOCHS    = 50
+KL_COEF        = 0.1
 
 
 # ---------------------------------------------------------------------------
@@ -30,20 +33,22 @@ class FeedbackDataset(Dataset):
     def __init__(self, path):
         with open(path) as f:
             records = json.load(f)
-        # load the exact images the user rated
-        images  = []
+        images, embeddings, ratings = [], [], []
         for r in records:
-            arr = np.array(Image.open(r['image_path']).convert('L'), dtype=np.float32) / 255.0
+            arr = np.array(Image.open(r['image_path']).convert('RGB'), dtype=np.float32) / 255.0
             images.append(arr)
+            embeddings.append(r['embedding'])
+            ratings.append(r['rating'])
 
-        self.images  = torch.tensor(np.stack(images)).unsqueeze(1)   # (N, 1, 64, 64)
-        self.ratings = torch.tensor([r['rating'] for r in records], dtype=torch.float32)
+        self.images     = torch.tensor(np.stack(images)).permute(0, 3, 1, 2)  # (N, 3, 64, 64)
+        self.embeddings = torch.tensor(embeddings, dtype=torch.float32)         # (N, 512)
+        self.ratings    = torch.tensor(ratings, dtype=torch.float32)            # (N,)
 
     def __len__(self):
         return len(self.ratings)
 
     def __getitem__(self, idx):
-        return self.images[idx], self.ratings[idx]
+        return self.images[idx], self.embeddings[idx], self.ratings[idx]
 
 
 def train_reward_model():
@@ -57,15 +62,17 @@ def train_reward_model():
     print("=== Phase 1: training reward model ===")
     for epoch in range(REWARD_EPOCHS):
         total = 0.0
-        for img, rating in fb_dl:
-            img, rating = img.to(DEVICE), rating.to(DEVICE)
-            pred = reward(img)
+        pbar  = tqdm(fb_dl, desc=f"Reward epoch {epoch+1}/{REWARD_EPOCHS}", leave=True)
+        for img, emb, rating in pbar:
+            img, emb, rating = img.to(DEVICE), emb.to(DEVICE), rating.to(DEVICE)
+            pred = reward(img, emb)
             loss = loss_fn(pred, rating)
             opt.zero_grad()
             loss.backward()
             opt.step()
             total += loss.item()
-        print(f"  Epoch {epoch+1}/{REWARD_EPOCHS}  bce={total/len(fb_dl):.4f}")
+            pbar.set_postfix(bce=f"{loss.item():.4f}")
+        print(f"  Epoch {epoch+1}/{REWARD_EPOCHS}  avg_bce={total/len(fb_dl):.4f}")
 
     torch.save(reward.state_dict(), "reward_model.pt")
     print("  Saved → reward_model.pt\n")
@@ -78,9 +85,15 @@ def train_reward_model():
 
 def rlhf_finetune(reward: RewardModel):
     flow = CNN_FM().to(DEVICE)
-    flow.load_state_dict(torch.load("emoji_fm.pt", map_location=DEVICE))
+    flow.load_state_dict(torch.load(FLOW_CKPT, map_location=DEVICE))
     flow.train()
     reward.eval()
+
+    flow_ref = CNN_FM().to(DEVICE)
+    flow_ref.load_state_dict(torch.load(FLOW_CKPT, map_location=DEVICE))
+    flow_ref.eval()
+    for p in flow_ref.parameters():
+        p.requires_grad_(False)
 
     with open(FEEDBACK_FILE) as f:
         records = json.load(f)
@@ -91,19 +104,33 @@ def rlhf_finetune(reward: RewardModel):
     opt = torch.optim.Adam(flow.parameters(), lr=1e-5)
 
     print("=== Phase 2: RLHF fine-tuning ===")
-    for epoch in range(RLHF_EPOCHS):
+    pbar = tqdm(range(RLHF_EPOCHS), desc="RLHF")
+    for epoch in pbar:
         idx  = torch.randint(0, len(all_embs), (16,))
         emb  = all_embs[idx]
 
-        img  = _rollout(flow, emb)      # differentiable — grads flow back
-        r    = reward(img)
-        loss = -r.mean()               # maximise reward
+        img  = _rollout(flow, emb)
+        r    = reward(img, emb)
+
+        # KL penalty: compare velocity fields at random (x, t) points
+        x0_kl  = torch.randn(emb.shape[0], 3, 64, 64, device=DEVICE)
+        t_kl   = torch.rand(emb.shape[0], device=DEVICE)
+        t_kl_  = t_kl.view(-1, 1, 1, 1)
+        x1_kl  = img.detach()
+        xt_kl  = (1 - t_kl_) * x0_kl + t_kl_ * x1_kl
+        with torch.no_grad():
+            v_ref = flow_ref(xt_kl, t_kl, emb)
+        v_new  = flow(xt_kl, t_kl, emb)
+        kl_loss = torch.nn.functional.mse_loss(v_new, v_ref)
+
+        loss = -r.mean() + KL_COEF * kl_loss
 
         opt.zero_grad()
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(flow.parameters(), 1.0)
         opt.step()
 
-        print(f"  Epoch {epoch+1}/{RLHF_EPOCHS}  mean_reward={r.mean().item():.4f}")
+        pbar.set_postfix(reward=f"{r.mean().item():.4f}", kl=f"{kl_loss.item():.4f}")
 
     torch.save(flow.state_dict(), "emoji_fm_rlhf.pt")
     print("  Saved → emoji_fm_rlhf.pt")
@@ -114,11 +141,15 @@ def rlhf_finetune(reward: RewardModel):
 # ---------------------------------------------------------------------------
 
 def _rollout(model, emb):
-    x  = torch.randn(emb.shape[0], 1, 64, 64, device=DEVICE)
+    x  = torch.randn(emb.shape[0], 3, 64, 64, device=DEVICE)
     dt = 1.0 / RLHF_STEPS
     for i in range(RLHF_STEPS):
-        t = torch.full((emb.shape[0],), i * dt, device=DEVICE)
-        x = x + model(x, t, emb) * dt
+        t      = torch.full((emb.shape[0],), i * dt, device=DEVICE)
+        t_next = torch.clamp(torch.full((emb.shape[0],), (i + 1) * dt, device=DEVICE), max=1.0)
+        v1     = model(x, t, emb)
+        x_pred = x + dt * v1
+        v2     = model(x_pred, t_next, emb)
+        x      = x + dt * (v1 + v2) / 2
     return x
 
 

@@ -32,26 +32,37 @@ def flow_matching_loss(model, x1, emb):
     return nn.functional.mse_loss(pred, target)
 
 
-EPOCHS      = 25
+EPOCHS      = 500
+scheduler   = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=EPOCHS, eta_min=1e-6)
 n_batches   = len(dataloader)
 n_samples   = len(dataset)
 
-lowest_loss = np.inf
+best_loss = np.inf
 
 for epoch in range(EPOCHS):
     total_loss = 0.0
     pbar = tqdm(dataloader, desc=f"Epoch {epoch+1}/{EPOCHS}", leave=True)
     for x1, emb in pbar:
-        x1, emb = x1.to(device), emb.to(device)
+        x1, emb = x1.to(device, dtype=torch.float32), emb.to(device, dtype=torch.float32)
+        # CFG: randomly drop conditioning
+        mask = torch.rand(emb.shape[0], device=emb.device) < 0.15
+        emb = emb.clone()
+        emb[mask] = 0.0
         loss = flow_matching_loss(model, x1, emb)
         opt.zero_grad()
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step()
         total_loss += loss.item()
-        if loss.item() < lowest_loss:
-            lowest_loss = loss.item()
-            torch.save(model.state_dict(), "emoji_fm.pt")
         pbar.set_postfix(loss=f"{loss.item():.4f}")
-    print(f"Epoch {epoch+1}/{EPOCHS}  avg_loss={total_loss/n_batches:.4f}")
+    scheduler.step()
+    avg_loss = total_loss / n_batches
+    current_lr = scheduler.get_last_lr()[0]
+    tag = ""
+    if avg_loss < best_loss:
+        best_loss = avg_loss
+        torch.save(model.state_dict(), "emoji_fm_best.pt")
+        tag = "  ✓ saved"
+    print(f"Epoch {epoch+1}/{EPOCHS}  avg_loss={avg_loss:.4f}  lr={current_lr:.2e}{tag}")
 
-torch.save(model.state_dict(), "emoji_fm_2.pt")
+torch.save(model.state_dict(), "emoji_fm_last.pt")

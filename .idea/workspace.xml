@@ -5,19 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6325da0-8a2d-40e4-b99d-2de0fa499191" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/emoji_embeddings.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/emoji_fm_2.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feedback.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generate.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generated_images/angry_face.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generated_images/mad_face.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generated_images/smiling_face.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FM_LOSS_FB.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emoji_embeddings_v2.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emoji_fm_best.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public_repo_images/woman_on_fire.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collect_feedback.py" beforeDir="false" afterPath="$PROJECT_DIR$/collect_feedback.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emoji_fm.pt" beforeDir="false" afterPath="$PROJECT_DIR$/emoji_fm.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emoji_fm_2.pt" beforeDir="false" afterPath="$PROJECT_DIR$/emoji_fm_2.pt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feedback.json" beforeDir="false" afterPath="$PROJECT_DIR$/feedback.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generated_images/angry_face.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/generated_images/mad_face.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/generated_images/smiling_face.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reward_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/reward_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rlhf_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/rlhf_train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
@@ -38,61 +44,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="6.085706506414371E-8" />
-      <entry key="MS500" value="0.036046426201570864" />
-      <entry key="S2" value="0.44160840806426377" />
-      <entry key="S5" value="0.9157287243415089" />
-      <entry key="S10" value="2.365970650800902" />
-      <entry key="S30" value="11.067627730868658" />
-      <entry key="S60" value="18.000258859265397" />
-      <entry key="M2" value="23.177185665826688" />
-      <entry key="M5" value="27.042392070873788" />
-      <entry key="M10" value="28.480244422031344" />
-      <entry key="M15" value="28.98201152234887" />
-      <entry key="M30" value="29.978657195619586" />
-      <entry key="H1" value="38.14566392826838" />
-      <entry key="H2" value="73.041907245882" />
-      <entry key="H4" value="134.36935825432255" />
-      <entry key="D1" value="323.6058584599128" />
-      <entry key="W1" value="430.64884863561764" />
+      <entry key="MS100" value="1.4001611530723326E-114" />
+      <entry key="MS500" value="5.228482732830253E-23" />
+      <entry key="S2" value="1.3389659520597372E-5" />
+      <entry key="S5" value="0.05433352656374845" />
+      <entry key="S10" value="0.9360231505265783" />
+      <entry key="S30" value="6.796976752058909" />
+      <entry key="S60" value="13.378617300134325" />
+      <entry key="M2" value="26.071131222171992" />
+      <entry key="M5" value="63.58409224357506" />
+      <entry key="M10" value="106.59753353231473" />
+      <entry key="M15" value="132.29298186459692" />
+      <entry key="M30" value="168.83743044358616" />
+      <entry key="H1" value="193.77966153609944" />
+      <entry key="H2" value="212.34975206004003" />
+      <entry key="H4" value="247.89203374648483" />
+      <entry key="D1" value="539.7595533517365" />
+      <entry key="W1" value="761.7855849603691" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000147982548" />
-      <entry key="S2" value="1.0114205617692205" />
-      <entry key="S5" value="1.2081689195969016" />
-      <entry key="S10" value="1.614179412671398" />
-      <entry key="S30" value="2.333146538109007" />
-      <entry key="S60" value="2.630361009702481" />
-      <entry key="M2" value="2.805048576997384" />
-      <entry key="M5" value="2.919434109103861" />
-      <entry key="M10" value="2.9592726519873773" />
-      <entry key="M15" value="2.972750609004903" />
-      <entry key="M30" value="2.990016099722592" />
-      <entry key="H1" value="3.1537837449320953" />
-      <entry key="H2" value="4.057265448725813" />
-      <entry key="H4" value="5.789458280751281" />
-      <entry key="D1" value="12.956264842345181" />
-      <entry key="W1" value="17.852740807300695" />
+      <entry key="MS500" value="1.000382037002801" />
+      <entry key="S2" value="1.139806176103811" />
+      <entry key="S5" value="1.455208689557856" />
+      <entry key="S10" value="1.6747466700798679" />
+      <entry key="S30" value="2.0071787031449064" />
+      <entry key="S60" value="2.976883485172333" />
+      <entry key="M2" value="4.9965403347926225" />
+      <entry key="M5" value="7.794326687070371" />
+      <entry key="M10" value="9.220016252275752" />
+      <entry key="M15" value="9.769946221500465" />
+      <entry key="M30" value="10.362167029967038" />
+      <entry key="H1" value="10.675618076912642" />
+      <entry key="H2" value="10.88843269741223" />
+      <entry key="H4" value="11.605311379248558" />
+      <entry key="D1" value="20.504676079451066" />
+      <entry key="W1" value="28.8471057125591" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.004364420851031419" />
-      <entry key="MS500" value="0.36551790835794806" />
-      <entry key="S2" value="1.1837143616317014" />
-      <entry key="S5" value="1.9539721512413126" />
-      <entry key="S10" value="3.837617723474902" />
-      <entry key="S30" value="13.317128695957953" />
-      <entry key="S60" value="20.580845088831705" />
-      <entry key="M2" value="25.954938677320783" />
-      <entry key="M5" value="29.950265358607677" />
-      <entry key="M10" value="31.433623638117993" />
-      <entry key="M15" value="31.950807511161408" />
-      <entry key="M30" value="32.96667145502169" />
-      <entry key="H1" value="41.29826985758919" />
-      <entry key="H2" value="77.09810227160281" />
-      <entry key="H4" value="140.15777451316634" />
-      <entry key="D1" value="336.5613989659693" />
-      <entry key="W1" value="448.5014225401526" />
+      <entry key="MS100" value="2.512774049547562E-10" />
+      <entry key="MS500" value="0.012024311565012375" />
+      <entry key="S2" value="0.36122091469330336" />
+      <entry key="S5" value="0.9430827959448567" />
+      <entry key="S10" value="2.232968259880872" />
+      <entry key="S30" value="8.638499539257548" />
+      <entry key="S60" value="16.242259324034062" />
+      <entry key="M2" value="30.982542574792955" />
+      <entry key="M5" value="71.32882857321152" />
+      <entry key="M10" value="115.78869758464792" />
+      <entry key="M15" value="142.0426170887217" />
+      <entry key="M30" value="179.18884562737279" />
+      <entry key="H1" value="204.44974033162845" />
+      <entry key="H2" value="223.23535767158785" />
+      <entry key="H4" value="259.4958086052932" />
+      <entry key="D1" value="560.2634829164159" />
+      <entry key="W1" value="790.6324956905745" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -104,33 +110,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.dataset.executor": "Run",
-    "Python.generate.executor": "Run",
-    "Python.sample.executor": "Run",
-    "Python.train.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/oliverhaddad/PycharmProjects/BensNN",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.dataset.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sample.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/oliverhaddad/PycharmProjects/BensNN/public_repo_images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public_repo_images" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -150,7 +157,9 @@
       <updated>1782512897705</updated>
       <workItem from="1782512898704" duration="197000" />
       <workItem from="1782513105357" duration="28676000" />
-      <workItem from="1782597840211" duration="8580000" />
+      <workItem from="1782597840211" duration="14115000" />
+      <workItem from="1782631865823" duration="9676000" />
+      <workItem from="1782678760447" duration="651000" />
     </task>
     <servers />
   </component>
@@ -162,12 +171,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/dataset.py</url>
-          <line>13</line>
+          <line>21</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/dataset.py</url>
-          <line>64</line>
+          <line>79</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

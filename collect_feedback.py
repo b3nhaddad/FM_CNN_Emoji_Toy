@@ -63,7 +63,7 @@ def main():
     os.makedirs(IMG_DIR, exist_ok=True)
 
     model = CNN_FM().to(DEVICE)
-    model.load_state_dict(torch.load("emoji_fm.pt", map_location=DEVICE))
+    model.load_state_dict(torch.load("emoji_fm_2.pt", map_location=DEVICE))
     model.eval()
 
     tokenizer, clip_model = load_clip(DEVICE)
