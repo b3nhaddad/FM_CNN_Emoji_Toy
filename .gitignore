@@ -218,8 +218,11 @@ __marimo__/
 .streamlit/secrets.toml
 
 generated_images
-./emoji_embeddings.pt
 feedback.json
 FM_LOSS_FB.py
-emoji_embeddings_v2.pt
-emoji_fm_best.pt
+
+# Model weights — do not commit to git
+*.pt
+*.pth
+*.ckpt
+*.safetensors
