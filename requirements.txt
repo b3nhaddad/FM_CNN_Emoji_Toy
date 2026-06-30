@@ -1,3 +1,7 @@
 torch
 pillow
-numpytqdm
+numpy
+tqdm
+transformers
+flask
+flask-cors

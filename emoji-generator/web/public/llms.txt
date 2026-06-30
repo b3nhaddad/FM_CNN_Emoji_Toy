@@ -1,6 +1,6 @@
-# Depop Automater
+# AI powered Emoji Generator
 
-> AI-powered web tool that automates Depop listing creation for resellers and secondhand fashion sellers.
+> AI-powered web tool that uses flow matching to generate emojis.
 
 Depop Automater reads uploaded product photos using computer vision and automatically generates Depop listing details — including title, description, category, brand, condition, color, style era, and suggested price. It then posts completed listings directly to the user's Depop account via a one-time Chrome extension setup. No manual form filling required.
 

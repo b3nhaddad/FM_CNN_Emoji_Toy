@@ -44,7 +44,9 @@ def sample(model, emb, device, H=64, W=64, steps=20, guidance_scale=7.5):
 
 
 if __name__ == '__main__':
-    from CNN import CNN_FM
+    import os
+    from PIL import Image as PILImage
+    from model.cnn import CNN_FM
 
     device    = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model     = CNN_FM().to(device)
@@ -57,11 +59,8 @@ if __name__ == '__main__':
     emb    = encode_text(prompt, tokenizer, clip, device)
     img    = sample(model, emb, device)
 
-    # tensor (1,3,64,64) -> uint8 RGB PIL image
-    import os
-    from PIL import Image as PILImage
     img_np  = (img.squeeze().permute(1, 2, 0).cpu().numpy() * 255).clip(0, 255).astype('uint8')
     pil_img = PILImage.fromarray(img_np, mode='RGB')
-    out     = os.path.join('/Users/oliverhaddad/PycharmProjects/BensNN', 'output.png')
+    out     = 'output.png'
     pil_img.save(out)
     print(f"Saved → {out}")

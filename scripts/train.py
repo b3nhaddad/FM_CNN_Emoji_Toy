@@ -4,8 +4,8 @@ import numpy as np
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from CNN import CNN_FM
-from dataset import EmojiDataset
+from model.cnn import CNN_FM
+from data.dataset import EmojiDataset
 
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 print(device)

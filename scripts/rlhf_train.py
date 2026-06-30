@@ -13,8 +13,8 @@ from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 
-from CNN import CNN_FM
-from reward_model import RewardModel
+from model.cnn import CNN_FM
+from model.reward_model import RewardModel
 
 FEEDBACK_FILE  = 'feedback.json'
 FLOW_CKPT      = 'emoji_fm_2.pt'

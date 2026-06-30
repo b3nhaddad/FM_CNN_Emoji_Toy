@@ -1,6 +1,6 @@
 """
 Interactive feedback collector.
-Run after training: python collect_feedback.py
+Run after training: python scripts/collect_feedback.py
 Press y = good, n = bad, q = quit.
 Feedback is appended to feedback.json.
 Each rated image is saved to feedback_images/ so the reward model
@@ -11,8 +11,8 @@ import os
 import torch
 from PIL import Image
 
-from CNN import CNN_FM
-from sample import load_clip, encode_text, sample
+from model.cnn import CNN_FM
+from data.sample import load_clip, encode_text, sample
 
 FEEDBACK_FILE = 'feedback.json'
 IMG_DIR       = 'feedback_images'

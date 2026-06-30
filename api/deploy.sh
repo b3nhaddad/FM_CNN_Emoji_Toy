@@ -12,8 +12,8 @@ IMAGE="gcr.io/${PROJECT}/${SERVICE}"
 echo "Building image..."
 gcloud builds submit \
   --project "$PROJECT" \
-  --tag "$IMAGE" \
-  --dockerfile api/Dockerfile \
+  --config cloudbuild.yaml \
+  --substitutions "_IMAGE=${IMAGE}" \
   .
 
 echo "Deploying to Cloud Run..."

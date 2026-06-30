@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo *)",
+      "Bash(ls node_modules/@ai-hero)",
+      "Bash(docker --version)",
+      "Bash(docker info *)",
+      "Bash(brew list *)",
+      "Bash(brew install *)",
+      "Bash(/opt/homebrew/bin/docker --version)",
+      "Bash(open -a Docker)",
+      "Bash(npx @ai-hero/sandcastle docker build-image)",
+      "Bash(npx --yes tsx .sandcastle/main.mts)",
+      "Bash(echo \"SANDCASTLE_RUN_EXIT_CODE=$?\")",
+      "Bash(mkdir -p .sandcastle/logs)",
+      "Bash(firebase --version)",
+      "Bash(firebase login:list)",
+      "Bash(firebase use *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(firebase deploy *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://depopautomater.web.app/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://depopautomater.web.app/onboarding)",
+      "Bash(curl -s https://depopautomater.web.app/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://depopautomater.web.app/api/onboarding -X POST)",
+      "Bash(xargs ls)",
+      "Bash(python3 -m py_compile api/depop.py)",
+      "Bash(python3 api/test_shipping_flow.py)",
+      "Bash(python3 -c \"import ast; ast.parse\\(open\\('api/depop.py'\\).read\\(\\)\\)\")",
+      "Bash(git -C /Users/couchroomkid/PycharmProjects/Depop_Lister log --oneline --all)",
+      "Read(//Users/couchroomkid/PycharmProjects/Depop_Lister/functions/**)",
+      "Read(//Users/couchroomkid/PycharmProjects/Depop_Lister/api/**)"
+    ]
+  }
+}

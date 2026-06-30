@@ -2,14 +2,17 @@ import os
 import torch
 from PIL import Image as PILImage
 
-from CNN import CNN_FM
-from sample import load_clip, sample, encode_text
-
-IMG_DIR        = './generated_images/'
-CKPT           = "emoji_fm_best.pt"   # RLHF-finetuned model; fall back to "emoji_fm_2.pt" if needed
-GUIDANCE_SCALE = 7.5
+from model.cnn import CNN_FM
+from data.sample import load_clip, sample, encode_text
 
 DEVICE = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
+print('Using device:', DEVICE)
+
+IMG_DIR        = './generated_images/'
+CKPT           = "/Users/couchroomkid/PycharmProjects/FM_CNN_Emoji_Toy/emoji_fm_best.pt"   # RLHF-finetuned model; fall back to "emoji_fm_2.pt" if needed
+GUIDANCE_SCALE = 7.5
+
+
 
 
 def main():

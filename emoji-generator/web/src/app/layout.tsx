@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { ThemeProvider } from "@/lib/theme-context";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -36,6 +37,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[#F7F4EC]">
         <ThemeProvider>{children}</ThemeProvider>
         <Toaster />
+        <Script id="aclib" src="//acscdn.com/script/aclib.js" strategy="afterInteractive" />
+        <Script id="aclib-autotag" strategy="afterInteractive">{`
+          aclib.runAutoTag({ zoneId: 'unxriaxpqv' });
+        `}</Script>
       </body>
     </html>
   );

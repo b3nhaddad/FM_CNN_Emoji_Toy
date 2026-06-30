@@ -15,6 +15,7 @@ RUN python -c "from transformers import CLIPTokenizer, CLIPTextModel; \
 COPY model/ ./model/
 COPY data/ ./data/
 COPY api/main.py ./api/main.py
+COPY api/remove_bg.py ./remove_bg.py
 
 # Copy model weights (must exist in build context — not gitignored here)
 COPY emoji_fm_best.pt ./emoji_fm_best.pt
