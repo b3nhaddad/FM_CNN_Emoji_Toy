@@ -1,0 +1,14 @@
+.git
+.gitignore
+.sandcastle
+.venv
+node_modules
+emoji-generator
+scripts
+assets
+data/__pycache__
+model/__pycache__
+api/__pycache__
+*.log
+*.md
+feedback.json

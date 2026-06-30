@@ -23,7 +23,8 @@ export default function HomePage() {
     setResultUrl(null);
 
     try {
-      const res = await fetch("/api/generate", {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL ?? "";
+      const res = await fetch(`${apiBase}/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: prompt.trim() }),
