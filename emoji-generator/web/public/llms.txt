@@ -1,0 +1,33 @@
+# Depop Automater
+
+> AI-powered web tool that automates Depop listing creation for resellers and secondhand fashion sellers.
+
+Depop Automater reads uploaded product photos using computer vision and automatically generates Depop listing details — including title, description, category, brand, condition, color, style era, and suggested price. It then posts completed listings directly to the user's Depop account via a one-time Chrome extension setup. No manual form filling required.
+
+## Who it's for
+
+Depop sellers, resellers, and secondhand fashion sellers who list items in volume and want to reduce the time spent on admin tasks.
+
+## Pricing
+
+- **Free plan:** up to 4 photos per listing, ad-supported, unlimited AI generation
+- **Full Access:** $9.99/month — unlimited photos, automated Depop posting, batch listing queue, video support, priority processing. Cancel anytime.
+
+## Key capabilities
+
+- AI fills in listing title, description, category, brand, condition, color, age/era, and style from photos alone
+- Batch queue: generate multiple listings in a session, submit them all at once
+- Automated posting: listings post directly to Depop via Chrome extension (one-time setup)
+- Supports JPEG, PNG, WEBP photos (up to 10 per listing) and MP4/MOV video
+- Custom or Depop shipping, with package size selection
+- All Depop categories supported: Tops, Bottoms, Dresses, Outerwear, Shoes, Accessories, Bags, Activewear, Swimwear, Jewellery, Hats, and more
+
+## Key pages
+
+- [Homepage](https://depopautomation.com/)
+- [How it works](https://depopautomation.com/how-it-works)
+- [Pricing](https://depopautomation.com/subscription)
+- [Sign up](https://depopautomation.com/signup)
+- [Sign in](https://depopautomation.com/login)
+- [Blog](https://depopautomation.com/blog)
+- [Full Articles Directory](https://depopautomation.com/llms-full.txt) — A complete repository of our reseller strategies, safety documentation, and platform guides.
